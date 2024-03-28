@@ -15,7 +15,8 @@
 void is_sleeping(t_philo *philo)
 {
 	pthread_mutex_lock(philo->msg);
-	printf("%lld %d is sleeping\n", 
+	printf("%ld %d is sleeping\n", 
 				(get_time() - philo->time), philo->id);
 	pthread_mutex_unlock(philo->msg);
+	ft_usleep(philo->table.time_to_sleep, get_time(), NULL);
 }

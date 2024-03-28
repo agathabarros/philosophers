@@ -15,7 +15,7 @@
 void is_thinking(t_philo *philo)
 {
 	pthread_mutex_lock(philo->msg);
-	printf("%lld %d is thinking\n", 
+	printf("%ld %d is thinking\n", 
 				(get_time() - philo->time), philo->id);
 	pthread_mutex_unlock(philo->msg);
 }

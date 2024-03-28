@@ -16,11 +16,17 @@ int is_eating(t_philo *philo)
 {
 	philo->t_last_meal = get_time();
 	pthread_mutex_lock(philo->msg);
-	printf("%lld %d is eating\n", 
+	printf("%ld %d is eating\n", 
 				(get_time() - philo->time), philo->id);
 	pthread_mutex_unlock(philo->msg);
-	usleep(philo->table.time_to_eat * 1000);
+	ft_usleep(philo->table.time_to_eat, get_time(), NULL);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+	if(philo->table.num_ph_eat != 0)
+	{
+		philo->table.num_ph_eat--;
+		if(philo->table.num_ph_eat == 0)
+			return(0);
+	}
 	return (1);
 }

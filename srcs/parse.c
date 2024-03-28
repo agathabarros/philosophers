@@ -63,7 +63,6 @@ int	parse_args(t_table *table, char **av)
 	if (av[5])
 	{
 		table->num_ph_eat = ft_atoi(av[5]);
-		printf("%d", table->num_ph_eat);
 		if(table->num_ph_eat == 0)
 			return(0);
 	}

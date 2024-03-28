@@ -42,7 +42,7 @@ void* routine_one(void* args)
 	philo = (t_philo *)args;
 	pthread_mutex_lock(philo->msg);
 	pthread_mutex_lock(philo->left_fork);
-	printf("%lld %d has taken a fork\n", 
+	printf("%ld %d has taken a fork\n", 
 				(get_time() - philo->time), philo->id);
 	ft_usleep(philo->table.time_to_die, get_time(), philo);
 	pthread_mutex_lock(philo->msg);
