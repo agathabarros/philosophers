@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:09:21 by agpereir          #+#    #+#             */
-/*   Updated: 2024/03/27 14:30:03 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/01 12:22:36 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void ft_usleep(int time_sleep, long long exec_time, t_philo *philo)
 			break;
 	}
 }
+/*
+** Routine for the philo to take the left fork
+** and print the message
+** 
+*/
 void* routine_one(void* args)
 {
 	t_philo *philo;
@@ -44,11 +49,11 @@ void* routine_one(void* args)
 	pthread_mutex_lock(philo->left_fork);
 	printf("%ld %d has taken a fork\n", 
 				(get_time() - philo->time), philo->id);
-	ft_usleep(philo->table.time_to_die, get_time(), philo);
-	pthread_mutex_lock(philo->msg);
+	ft_usleep(philo->table.time_to_die, get_time(), NULL);
+	pthread_mutex_lock(philo->death);
 	*(philo->ch_death) = 0;
 	printf("All philos are full\n");
-	pthread_mutex_unlock(philo->msg);
+	pthread_mutex_unlock(philo->death);
 	return (NULL);
 }
 void* routine(void* args)

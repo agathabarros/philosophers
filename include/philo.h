@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:52:41 by agpereir          #+#    #+#             */
-/*   Updated: 2024/03/27 14:33:03 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:36:50 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ long	get_time(void);
 void time_to_die(t_philo *philo);
 void* routine_one(void* args);
 int one_philo(t_philo *philo);
-void ft_usleep(int time_sleep, long  exec_time, t_philo *philo);
+void ft_usleep(int time_sleep, long long exec_time, t_philo *philo);
 
 #endif
