@@ -20,6 +20,8 @@ void time_to_die(t_philo *philo)
 		pthread_mutex_lock(philo->death);
 		*(philo->ch_death) = 0;
 		printf("All philos are full\n");
+		pthread_mutex_unlock(philo->msg);
+
 		pthread_mutex_unlock(philo->death);
 		
 	}
@@ -66,8 +68,8 @@ void* routine(void* args)
 	while (1)
 	{
 		time_to_die(philo);
-		left(philo);
 		right(philo);
+		left(philo);
 		if(!is_eating(philo))
 			break;
 		is_sleeping(philo);

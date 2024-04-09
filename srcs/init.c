@@ -17,8 +17,8 @@ int init_philo(t_philo *philo, t_table table)
 	int i;
 
 	i = 0;
-	philo->ch_death = (int *)malloc(sizeof(sizeof(int)));
-	philo->meals_eaten = (int *)malloc(sizeof(sizeof(int)));
+	philo->ch_death = (int *)malloc(sizeof(int));
+	philo->meals_eaten = (int *)malloc(sizeof(int));
 	if (!philo->ch_death || !philo->meals_eaten)
 	{
 		printf("Error: malloc failed, init philo\n");
@@ -54,7 +54,9 @@ int		start(t_philo *philo)
 		{
 			pthread_mutex_lock(philo->msg);
 			printf("Error: pthread_create\n");
+			pthread_mutex_unlock(philo->msg);
 			return (1);
+
 		}
 		i++;
 	}
@@ -62,29 +64,30 @@ int		start(t_philo *philo)
 }
 int init_forks(t_philo *philo)
 {
-	int i;
-	
-	i = 0;
-	while(i < philo->table.num_philos)
-	{
-		philo[i].left_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-		if(!philo[i].left_fork)
-		{
-			printf("Error: malloc failed, init fork\n");
-		}
-		pthread_mutex_init(philo[i].left_fork, NULL);
-		i++;
-	}
-	i = 0;
-	while(i < philo->table.num_philos)
-	{
-		if (i == 0)
-			philo[i].right_fork = philo[philo->table.num_philos - 1].left_fork;
-		else
-			philo[i].right_fork = philo[i - 1].left_fork;
-		i++;
-	}
-	return (0);
+    int i;
+    
+    i = 0;
+    while(i < philo->table.num_philos)
+    {
+        philo[i].left_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+        if(!philo[i].left_fork)
+        {
+            printf("Error: malloc failed, init fork\n");
+            return (1);
+        }
+        pthread_mutex_init(philo[i].left_fork, NULL);
+        i++;
+    }
+    i = 0;
+    while(i < philo->table.num_philos)
+    {
+        if (i == 0)
+            philo[i].right_fork = philo[philo->table.num_philos - 1].left_fork;
+        else
+            philo[i].right_fork = philo[i - 1].left_fork;
+        i++;
+    }
+    return (0);
 }
 
 int init_mutex(t_philo *philo)

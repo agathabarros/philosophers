@@ -26,9 +26,9 @@ WHITE 	= \033[1;37m
 LIB_PATH = ./libft
 
 #COMMANDS
-CC = cc -g 
+CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=address
+CFLAGS = -pthread -Wall -Wextra -Werror
 INCLUDE = -I include
 MAKE = make -C
 LIBFT_PATH = libft

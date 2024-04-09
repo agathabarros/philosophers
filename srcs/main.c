@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 13:06:56 by agpereir          #+#    #+#             */
-/*   Updated: 2024/03/27 14:23:35 by agpereir         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/philo.h"
 
 void free_all(t_philo *table)
@@ -17,6 +5,7 @@ void free_all(t_philo *table)
 	int i;
 
 	i=0;
+
 	pthread_mutex_destroy(table[i].meals_done);
 	pthread_mutex_destroy(table[i].death);
 	pthread_mutex_destroy(table[i].msg);
@@ -68,5 +57,7 @@ int	main(int ac, char **av)
 		free_all(philo);
 	}
 	else
+	{
 		return (printf("Error: wrong number of arguments\n"));
+	}
 }
