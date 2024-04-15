@@ -28,7 +28,7 @@ LIB_PATH = ./libft
 #COMMANDS
 CC = gcc
 RM = rm -f
-CFLAGS = -pthread -Wall -Wextra -Werror
+CFLAGS = -pthread -Wall -Wextra -Werror -g -fsanitize=thread
 INCLUDE = -I include
 MAKE = make -C
 LIBFT_PATH = libft

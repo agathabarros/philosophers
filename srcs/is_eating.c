@@ -20,8 +20,8 @@ int is_eating(t_philo *philo)
 				(get_time() - philo->time), philo->id);
 	pthread_mutex_unlock(philo->msg);
 	ft_usleep(philo->table.time_to_eat, get_time(), NULL);
-	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
+	//pthread_mutex_unlock(philo->left_fork);
+	//pthread_mutex_unlock(philo->right_fork);
 	if(philo->table.num_ph_eat != 0)
 	{
 		philo->table.num_ph_eat--;
