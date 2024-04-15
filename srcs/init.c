@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:32:25 by agpereir          #+#    #+#             */
-/*   Updated: 2024/03/27 14:32:21 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:14:38 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,15 +117,17 @@ int init_mutex(t_philo *philo)
 }
 int one_philo(t_philo *philo)
 {
+	pthread_t tr_id = 0;
 	if(philo->table.num_philos == 1)
 	{
 		philo->time = get_time();
-		if(pthread_create(&(philo->philo), NULL, &routine_one, philo) != 0)
+		if(pthread_create(&tr_id, NULL, &routine_one, philo) != 0)
 		{
 			pthread_mutex_lock(philo->msg);
 			printf("Error: pthread_create\n");
 			return (0);
 		}
+		pthread_join(tr_id, NULL);
 		return (0);
 	}
 	return (1);

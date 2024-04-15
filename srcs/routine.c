@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:09:21 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/01 12:22:36 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:07:25 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void time_to_die(t_philo *philo)
 		pthread_mutex_lock(philo->msg);
 		pthread_mutex_lock(philo->death);
 		*(philo->ch_death) = 0;
-		printf("All philos are full\n");
+		printf("\033[1;31mAll philos are full\n\033[0m");
 		pthread_mutex_unlock(philo->msg);
 
 		pthread_mutex_unlock(philo->death);
@@ -70,6 +70,7 @@ void* routine(void* args)
 		time_to_die(philo);
 		right(philo);
 		left(philo);
+		
 		if(!is_eating(philo))
 			break;
 		is_sleeping(philo);
