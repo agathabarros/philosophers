@@ -35,7 +35,10 @@ void wait_ph(t_philo *philo, int num_meals)
 			
 		pthread_mutex_lock(philo->meals_done);
 		if(*(philo->meals_eaten) == num_meals)
-			break;		
+		{	
+			pthread_mutex_unlock(philo->death);
+			break;	
+		}	
 		pthread_mutex_unlock(philo->meals_done);		
 		usleep(50);
 	}
