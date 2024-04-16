@@ -3,12 +3,13 @@
 void free_all(t_philo *table)
 {
 	int i;
+	//int num_philos;
 
 	i=0;
-
 	pthread_mutex_destroy(table[i].meals_done);
 	pthread_mutex_destroy(table[i].death);
 	pthread_mutex_destroy(table[i].msg);
+	//num_philos = table->table.num_philos;
 	while(i < table->table.num_philos)
 	{
 		pthread_mutex_destroy(table[i].left_fork);

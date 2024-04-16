@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:09:21 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/16 13:55:44 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:27:00 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ void time_to_die(t_philo *philo)
 		pthread_mutex_lock(philo->msg);
 		pthread_mutex_lock(philo->death);
 		*(philo->ch_death) = 0;
-		printf("\033[1;31mAll philos are full\n\033[0m");
-		pthread_mutex_unlock(philo->msg);
-
+		printf("%ld philo %d died 💀🎃\n",
+			(get_time() - philo->time), philo->id);
 		pthread_mutex_unlock(philo->death);
-		
 	}
 }
 void ft_usleep(int time_sleep, long long exec_time, t_philo *philo)
@@ -52,10 +50,10 @@ void* routine_one(void* args)
 	printf("%ld %d has taken a fork\n", 
 				(get_time() - philo->time), philo->id);
 	ft_usleep(philo->table.time_to_die, get_time(), NULL);
-	time_to_die(philo);
 	pthread_mutex_lock(philo->death);
 	*(philo->ch_death) = 0;
-	printf("All philos are full\n");
+	printf("%ld philo %d died 💀\n",
+			(get_time() - philo->time), philo->id);
 	pthread_mutex_unlock(philo->death);
 	return (NULL);
 }
@@ -69,7 +67,6 @@ void* routine(void* args)
 	while (1)
 	{
 		time_to_die(philo);
-		usleep(50);
 		left(philo);
 		right(philo);
 		if(!is_eating(philo))
