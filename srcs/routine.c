@@ -52,6 +52,7 @@ void* routine_one(void* args)
 	printf("%ld %d has taken a fork\n", 
 				(get_time() - philo->time), philo->id);
 	ft_usleep(philo->table.time_to_die, get_time(), NULL);
+	time_to_die(philo);
 	pthread_mutex_lock(philo->death);
 	*(philo->ch_death) = 0;
 	printf("All philos are full\n");
