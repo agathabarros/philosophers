@@ -7,7 +7,7 @@ void free_all(t_philo *table)
 	i=0;
 	pthread_mutex_destroy(table[i].meals_done);
 	pthread_mutex_destroy(table[i].death);
-	pthread_mutex_destroy(table[i].msg);
+	//pthread_mutex_destroy(table[i].msg);
 	while(i < table->table.num_philos)
 	{
 		//pthread_mutex_destroy(table[i].left_fork);
