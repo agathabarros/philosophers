@@ -16,18 +16,31 @@ void	left(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
 	time_to_die(philo);
-	pthread_mutex_lock(philo->msg);
+	//pthread_mutex_lock(philo->msg);
 	printf("%ld %d has taken a fork\n", 
 				(get_time() - philo->time), philo->id);
-	pthread_mutex_unlock(philo->msg);
-
+	//pthread_mutex_unlock(philo->msg);
 }
 void right(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
 	time_to_die(philo);
-	pthread_mutex_lock(philo->msg);
+	//pthread_mutex_lock(philo->msg);
 	printf("%ld %d has taken a fork\n", 
 				(get_time() - philo->time), philo->id);
-	pthread_mutex_unlock(philo->msg);
+	//pthread_mutex_unlock(philo->msg);
+}
+
+void pick_up(t_philo *philo)
+{
+	if(philo->id % 2 == 0)
+	{
+		left(philo);
+		right(philo);
+	}
+	else
+	{
+		right(philo);
+		left(philo);
+	}
 }

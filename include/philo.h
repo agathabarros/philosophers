@@ -74,5 +74,6 @@ void time_to_die(t_philo *philo);
 void* routine_one(void* args);
 int one_philo(t_philo *philo);
 void ft_usleep(int time_sleep, long long exec_time, t_philo *philo);
+void pick_up(t_philo *philo);
 
 #endif

@@ -3,17 +3,15 @@
 void free_all(t_philo *table)
 {
 	int i;
-	//int num_philos;
 
 	i=0;
 	pthread_mutex_destroy(table[i].meals_done);
 	pthread_mutex_destroy(table[i].death);
 	pthread_mutex_destroy(table[i].msg);
-	//num_philos = table->table.num_philos;
 	while(i < table->table.num_philos)
 	{
-		pthread_mutex_destroy(table[i].left_fork);
-		free(table[i].left_fork);
+		//pthread_mutex_destroy(table[i].left_fork);
+		//free(table[i].left_fork);
 		i++;
 	}
 	free(table->meals_done);
@@ -21,7 +19,7 @@ void free_all(t_philo *table)
 	free(table->msg);
 	free(table->ch_death);
 	free(table->meals_eaten);
-	free(table);
+	//free(table);
 	
 }
 void wait_ph(t_philo *philo, int num_meals)
@@ -30,15 +28,18 @@ void wait_ph(t_philo *philo, int num_meals)
 	{
 		pthread_mutex_lock(philo->death);
 		if(*(philo->ch_death) == 0)
+		{	
+			pthread_mutex_unlock(philo->death);
 			break;
+		}
 		pthread_mutex_unlock(philo->death);	
 			
 		pthread_mutex_lock(philo->meals_done);
 		if(*(philo->meals_eaten) == num_meals)
-		{	
-			pthread_mutex_unlock(philo->death);
-			break;	
-		}	
+		{
+			pthread_mutex_unlock(philo->meals_done);
+			break;		
+		}
 		pthread_mutex_unlock(philo->meals_done);		
 		usleep(50);
 	}

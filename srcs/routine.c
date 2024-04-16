@@ -21,7 +21,9 @@ void time_to_die(t_philo *philo)
 		*(philo->ch_death) = 0;
 		printf("%ld philo %d died 💀🎃\n",
 			(get_time() - philo->time), philo->id);
+		//pthread_mutex_unlock(philo->msg);
 		pthread_mutex_unlock(philo->death);
+
 	}
 }
 void ft_usleep(int time_sleep, long long exec_time, t_philo *philo)
@@ -69,8 +71,7 @@ void* routine(void* args)
 	while (1)
 	{
 		time_to_die(philo);
-		left(philo);
-		right(philo);
+		pick_up(philo);
 		if(!is_eating(philo))
 			break;
 		is_sleeping(philo);
