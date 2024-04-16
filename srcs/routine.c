@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:09:21 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/15 16:07:25 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:55:44 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void* routine(void* args)
 	while (1)
 	{
 		time_to_die(philo);
-		right(philo);
+		usleep(50);
 		left(philo);
-		
+		right(philo);
 		if(!is_eating(philo))
 			break;
 		is_sleeping(philo);
