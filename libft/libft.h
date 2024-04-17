@@ -17,24 +17,23 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stddef.h>
-#include <stdarg.h>
+# include <stdarg.h>
 # include <string.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10000000
 # endif
 
 //------ GNL -----//
-char		*get_keep(char *buffer);
-char		*get_line_gnl(char *buffer);
-char		*get_next_line(int fd);
+char	*get_keep(char *buffer);
+char	*get_line_gnl(char *buffer);
+char	*get_next_line(int fd);
 //------ UTILS -----//
-char		*ft_strjoin_gnl(char *s1, char *s2);
-int			ft_strchr_gnl(char *str, char c);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+int		ft_strchr_gnl(char *str, char c);
 
 //------ PRINTF -----//
 

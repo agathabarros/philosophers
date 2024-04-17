@@ -83,26 +83,3 @@ char	**ft_split(char const *s, char c)
 	words[j] = 0;
 	return (words);
 }
-/*int		main(void)
-{
-
-    char s[] = "      split       this for   me  !       ";
-    char c = ' ';
-    char *result = worddup(s, c);
-
-
-    printf("Palavra encontrada(*worddupp): %s\n", result);
-      
-
-	printf("Qtd de Palavras(count_word): %d\n", count_word("agatha barros", ' '));
-
-	int i = 0;
-	char **tab;
-		
-	tab = ft_split("Agatha Barros", ' ');
-	while (i < 2)
-	{
-		printf("string %d : %s\n", i, tab[i]);
-		i++;
-	}
-}*/

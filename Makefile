@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+         #
+#    By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/07 13:51:47 by agpereir          #+#    #+#              #
-#    Updated: 2024/04/15 16:09:13 by agpereir         ###   ########.fr        #
+#    Updated: 2024/04/17 16:37:47 by agpereir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,23 @@ CC = gcc
 RM = rm -f
 CFLAGS = -pthread -Wall -Wextra -Werror -g -fsanitize=thread
 INCLUDE = -I include
-MAKE = make -C
+MAKE = make -s -C
 LIBFT_PATH = libft
 LFLAGS = -L ${LIBFT_PATH} -lft -lreadline
 
 #FILES
 
 NAME 	= philo
-SRCS 	= 	$(wildcard srcs/*.c)
+SRCS 	= 	srcs/fork.c \
+			srcs/get_time.c \
+			srcs/init.c \
+			srcs/is_eating.c \
+			srcs/is_sleeping.c \
+			srcs/is_thinking.c \
+			srcs/main.c \
+			srcs/parse.c \
+			srcs/routine.c
+
 
 OBJS_PATH = objs
 OBJS = $(SRCS:%.c=$(OBJS_PATH)/%.o)
@@ -50,21 +59,23 @@ $(OBJS_PATH)/%.o: %.c
 $(NAME): ${OBJS}
 		@${MAKE} ${LIBFT_PATH}
 		@${CC} ${CFLAGS} ${INCLUDE} ${OBJS} ${LFLAGS} -o ${NAME}
+		@echo "$(GREEN)${LIBFT_PATH}$(RESET) : $(CYAN)Compilation done$(RESET)"
 		@echo "$(GREEN)$(NAME)$(RESET) : $(CYAN)Compilation done$(RESET)"
 
 all:	${NAME}
 
 clean:
 		@${MAKE} ${LIBFT_PATH} clean
+		@echo "$(GREEN)$(LIBFT_PATH)$(RESET) : $(CYAN)Cleaning done$(RESET)"
 		@${RM} ${OBJS}
 		@echo "$(GREEN)$(NAME)$(RESET) : $(CYAN)Cleaning done$(RESET)"
 
 fclean: clean
-		@${MAKE} ${LIBFT_PATH} fclean
+		@${MAKE} ${LIBFT_PATH} fclean 
 		@${RM} ${NAME}
 		@echo "$(GREEN)$(NAME)$(RESET) : $(CYAN)Full Cleaning done$(RESET)"
 
-re: fclean all
+re: fclean all 
 
 .PHONY: all clean fclean re 
 

@@ -50,4 +50,3 @@ char	*ft_strjoin_gnl(char *str1, char *str2)
 	free(str1);
 	return (str);
 }
-

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -20,16 +19,6 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include "../libft/libft.h"
-
-// Color codes
-# define RESET   "\033[0m"
-# define RED     "\033[31m"
-# define GREEN   "\033[32m"
-# define YELLOW  "\033[33m"
-# define BLUE    "\033[34m"
-# define MAGENTA "\033[35m"
-# define CYAN    "\033[36m"
-# define WHITE   "\033[37m"
 
 typedef pthread_mutex_t	t_mutex;
 
@@ -53,27 +42,27 @@ typedef struct s_philo
 	t_mutex			*death;
 	t_mutex			*meals_done;
 	int				*ch_death;
-	int 			*meals_eaten;
+	int				*meals_eaten;
 	long			time;
 }	t_philo;
 
-int 	init_philo(t_philo *philo, t_table table);
+int		init_philo(t_philo *philo, t_table table);
 int		start(t_philo *philo);
-int 	init_forks(t_philo *philo);
-int check_digit(char **av);
-int 	init_mutex(t_philo *philo);
-void* 	routine(void* args);
-int	parse_args(t_table *table, char **av);
+int		init_forks(t_philo *philo);
+int		check_digit(char **av);
+int		init_mutex(t_philo *philo);
+void	*routine(void *args);
+int		parse_args(t_table *table, char **av);
 void	left(t_philo *philo);
 void	right(t_philo *philo);
-void is_sleeping(t_philo *philo);
-void is_thinking(t_philo *philo);
-int is_eating(t_philo *philo);
+void	is_sleeping(t_philo *philo);
+void	is_thinking(t_philo *philo);
+int		is_eating(t_philo *philo);
 long	get_time(void);
-void time_to_die(t_philo *philo);
-void* routine_one(void* args);
-int one_philo(t_philo *philo);
-void ft_usleep(int time_sleep, long long exec_time, t_philo *philo);
-void pick_up(t_philo *philo);
+void	time_to_die(t_philo *philo);
+void	*routine_one(void *args);
+int		one_philo(t_philo *philo);
+void	ft_usleep(int time_sleep, long long exec_time, t_philo *philo);
+void	pick_up(t_philo *philo);
 
 #endif

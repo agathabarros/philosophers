@@ -1,49 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 15:56:19 by agpereir          #+#    #+#             */
+/*   Updated: 2024/04/17 15:56:20 by agpereir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo.h"
 
-void free_all(t_philo *table)
+void	free_all(t_philo *table)
 {
-	int i;
+	int	i;
 
-	i=0;
+	i = 0;
 	pthread_mutex_destroy(table[i].meals_done);
 	pthread_mutex_destroy(table[i].death);
-	//pthread_mutex_destroy(table[i].msg);
-	while(i < table->table.num_philos)
-	{
-		//pthread_mutex_destroy(table[i].left_fork);
-		//free(table[i].left_fork);
+	while (i < table->table.num_philos)
 		i++;
-	}
 	free(table->meals_done);
 	free(table->death);
 	free(table->msg);
 	free(table->ch_death);
 	free(table->meals_eaten);
-	//free(table);
-	
 }
-void wait_ph(t_philo *philo, int num_meals)
+
+void	wait_ph(t_philo *philo, int num_meals)
 {
-	while(1)
+	while (1)
 	{
 		pthread_mutex_lock(philo->death);
-		if(*(philo->ch_death) == 0)
-		{	
+		if (*(philo->ch_death) == 0)
+		{
 			pthread_mutex_unlock(philo->death);
-			break;
+			break ;
 		}
-		pthread_mutex_unlock(philo->death);	
-			
+		pthread_mutex_unlock(philo->death);
 		pthread_mutex_lock(philo->meals_done);
-		if(*(philo->meals_eaten) == num_meals)
+		if (*(philo->meals_eaten) == num_meals)
 		{
 			pthread_mutex_unlock(philo->meals_done);
-			break;		
+			break ;
 		}
-		pthread_mutex_unlock(philo->meals_done);		
+		pthread_mutex_unlock(philo->meals_done);
 		usleep(50);
 	}
 }
+
 int	main(int ac, char **av)
 {
 	t_table		table;
@@ -55,8 +61,7 @@ int	main(int ac, char **av)
 			return (0);
 		philo = (t_philo *)malloc(sizeof(t_philo) * table.num_philos);
 		if (philo == NULL)
-			return (printf("Error: malloc failed, memory was not allocated :/\n"));
-		
+			return (printf("Error: memory was not allocated :/\n"));
 		if (init_philo(philo, table) || start(philo))
 			return (0);
 		wait_ph(philo, table.num_philos);

@@ -3,15 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+         #
+#    By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/13 17:04:13 by agpereir          #+#    #+#              #
-#    Updated: 2024/02/24 07:52:27 by agpereir         ###   ########.fr        #
+#    Updated: 2024/04/17 16:16:39 by agpereir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .SILENT:
 
+#CORLORS
+RESET	= \033[0m
+BLACK 	= \033[1;30m
+RED 	= \033[1;31m
+GREEN 	= \033[1;32m
+YELLOW 	= 033[1;33m
+BLUE	= \033[1;34m
+MAGENTA	= \033[1;35m
+CYAN 	= \033[1;36m
+WHITE 	= \033[1;37m
 
 NAME = libft.a
 
@@ -43,6 +53,7 @@ INCLUDE = -I .
 
 .o:.c
 		${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
+		
 
 $(NAME): ${OBJS}
 		ar rcs ${NAME} ${OBJS}
