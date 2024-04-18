@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:09:21 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/16 16:04:33 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:47:10 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	*routine_one(void *args)
 	printf("%ld philo %d died 💀\n",
 		(get_time() - philo->time), philo->id);
 	pthread_mutex_unlock(philo->left_fork);
+	
 	pthread_mutex_unlock(philo->msg);
 	pthread_mutex_unlock(philo->death);
 	return (NULL);
@@ -73,7 +74,9 @@ void	*routine(void *args)
 	while (1)
 	{
 		time_to_die(philo);
-		pick_up(philo);
+		left(philo);
+		right(philo);
+		//pick_up(philo);
 		if (!is_eating(philo))
 			break ;
 		is_sleeping(philo);

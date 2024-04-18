@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:56:19 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/17 15:56:20 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:51:24 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,20 @@ void	free_all(t_philo *table)
 
 	i = 0;
 	pthread_mutex_destroy(table[i].meals_done);
+	pthread_mutex_destroy(table[i].msg);
 	pthread_mutex_destroy(table[i].death);
 	while (i < table->table.num_philos)
+	{	
+		pthread_mutex_destroy(table[i].left_fork);
+		free(table[i].left_fork);
 		i++;
+	}
 	free(table->meals_done);
 	free(table->death);
 	free(table->msg);
 	free(table->ch_death);
 	free(table->meals_eaten);
+	free(table);
 }
 
 void	wait_ph(t_philo *philo, int num_meals)
@@ -68,7 +74,5 @@ int	main(int ac, char **av)
 		free_all(philo);
 	}
 	else
-	{
 		return (printf("Error: wrong number of arguments\n"));
-	}
 }
