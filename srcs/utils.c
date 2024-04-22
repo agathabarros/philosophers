@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 17:51:31 by agpereir          #+#    #+#             */
-/*   Updated: 2023/05/04 15:04:26 by agpereir         ###   ########.fr       */
+/*   Created: 2024/04/22 13:14:58 by agpereir          #+#    #+#             */
+/*   Updated: 2024/04/22 13:15:29 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* This function returns the converted integral number as an int value. 
-If no valid conversion could be performed, it returns zero. 
-Converts String to integers.*/
-#include "libft.h"
+#include "../include/philo.h"
 
 int	ft_atoi(char *str)
 {
@@ -40,13 +37,10 @@ int	ft_atoi(char *str)
 	}
 	return (result * sign);
 }
-/*int main(void)
-{
-		 printf("%s", "ft_atoi");
-    printf("%s", "\n");
-    printf("%d",ft_atoi("\010 9"));
-   
-    printf("%s", "\n");
-     printf("%s\n", "----------------");
 
-}*/
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}

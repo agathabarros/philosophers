@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:52:41 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/16 14:40:04 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:16:16 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
-# include "../libft/libft.h"
 
 typedef pthread_mutex_t	t_mutex;
 
@@ -64,5 +63,7 @@ void	*routine_one(void *args);
 int		one_philo(t_philo *philo);
 void	ft_usleep(int time_sleep, long long exec_time, t_philo *philo);
 void	pick_up(t_philo *philo);
+int ft_atoi(char *str);
+int ft_isdigit(int c);
 
 #endif
