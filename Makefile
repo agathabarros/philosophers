@@ -6,7 +6,7 @@
 #    By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/07 13:51:47 by agpereir          #+#    #+#              #
-#    Updated: 2024/04/22 13:14:33 by agpereir         ###   ########.fr        #
+#    Updated: 2024/04/24 20:32:02 by agpereir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,9 @@ SRCS 	= 	srcs/fork.c \
 			srcs/is_sleeping.c \
 			srcs/is_thinking.c \
 			srcs/main.c \
-			srcs/parse.c \
+			srcs/checks.c \
 			srcs/utils.c \
+			srcs/monitoring.c \
 			srcs/routine.c
 
 

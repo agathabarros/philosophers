@@ -3,76 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:56:19 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/18 18:51:24 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:32:41 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	free_all(t_philo *table)
+bool	start_dinner(t_table *table, int ac, char **av)
 {
-	int	i;
-
-	i = 0;
-	pthread_mutex_destroy(table[i].meals_done);
-	pthread_mutex_destroy(table[i].msg);
-	pthread_mutex_destroy(table[i].death);
-	while (i < table->table.num_philos)
-	{	
-		pthread_mutex_destroy(table[i].left_fork);
-		free(table[i].left_fork);
-		i++;
-	}
-	free(table->meals_done);
-	free(table->death);
-	free(table->msg);
-	free(table->ch_death);
-	free(table->meals_eaten);
-	free(table);
-}
-
-void	wait_ph(t_philo *philo, int num_meals)
-{
-	while (1)
-	{
-		pthread_mutex_lock(philo->death);
-		if (*(philo->ch_death) == 0)
-		{
-			pthread_mutex_unlock(philo->death);
-			break ;
-		}
-		pthread_mutex_unlock(philo->death);
-		pthread_mutex_lock(philo->meals_done);
-		if (*(philo->meals_eaten) == num_meals)
-		{
-			pthread_mutex_unlock(philo->meals_done);
-			break ;
-		}
-		pthread_mutex_unlock(philo->meals_done);
-		usleep(50);
-	}
+	set_args(table, ac, av);
+	if (!check_params(table, ac))
+		return (false);
+	return (true);
 }
 
 int	main(int ac, char **av)
 {
 	t_table		table;
-	t_philo		*philo;
+	t_philo		**philos;
+	int	i;
 
-	if (ac == 5 || ac == 6)
-	{
-		if (!(parse_args(&table, av)) || !check_digit(av))
-			return (0);
-		philo = (t_philo *)malloc(sizeof(t_philo) * table.num_philos);
-		if (philo == NULL)
-			return (printf("Error: memory was not allocated :/\n"));
-		if (init_philo(philo, table) || start(philo))
-			return (0);
-		wait_ph(philo, table.num_philos);
-		free_all(philo);
-	}
-	else
-		return (printf("Error: wrong number of arguments\n"));
+	i = 0;
+	table = (t_table){0};
+	init_mutex(&table);
+	if (start_dinner(&table, ac, av))
+		return (1);
+	philos = init_all(&table);
+	destroy_philos(table, philos, i);
+	free(table.forks);
+	free(philos);
+	return (0);
 }
