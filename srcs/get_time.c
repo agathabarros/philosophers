@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:22:42 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/24 20:24:05 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:49:30 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
 
 __uint64_t	get_time(__uint64_t start_time)
 {

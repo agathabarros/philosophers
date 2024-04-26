@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+         #
+#    By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/07 13:51:47 by agpereir          #+#    #+#              #
-#    Updated: 2024/04/24 20:32:02 by agpereir         ###   ########.fr        #
+#    Updated: 2024/04/26 20:11:23 by agpereir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

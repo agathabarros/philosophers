@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:32:25 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/25 13:31:48 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:56:45 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void init_mutex(t_table *philo)
+void	init_mutex(t_table *philo)
 {
 	pthread_mutex_init(&philo->finish_eating, NULL);
 	pthread_mutex_init(&philo->sleeping, NULL);
@@ -24,6 +24,8 @@ t_philo	*init_table(int i, t_table *infos)
 	t_philo	*philo;
 
 	philo = malloc(sizeof(t_philo));
+	if(!philo)
+		return (NULL);
 	philo->table = infos;
 	philo->id = i;
 	philo->fork_right = i;
@@ -49,6 +51,8 @@ void	init_forks(t_table *info)
 
 	i = 0;
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
+	if(!info->forks)
+		return ;
 	while (i < info->num_philos)
 	{
 		if (pthread_mutex_init(&info->forks[i], NULL) != 0)

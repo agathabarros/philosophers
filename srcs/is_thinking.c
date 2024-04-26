@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_thinking.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:56:26 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/26 13:06:53 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:36:19 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
 
 void	thinking(t_philo *philo)
 {
@@ -26,4 +25,3 @@ void	thinking(t_philo *philo)
 			(int)get_time((__uint64_t)philo->table->start_time), philo->id + 1);
 	pthread_mutex_unlock(&philo->table->msg);
 }
-

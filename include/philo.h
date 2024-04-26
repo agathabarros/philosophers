@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:52:41 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/26 13:32:53 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:53:40 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_philo
 
 int				left(t_philo *philo);
 int				right(t_philo *philo);
-void 			init_mutex(t_table *philo);
+void			init_mutex(t_table *philo);
 t_philo			*init_table(int i, t_table *infos);
 t_philo			**init_all(t_table *table);
 void			init_forks(t_table *philo);
@@ -72,7 +72,7 @@ void			*routine(void *arg);
 void			*monitoring(void *arg);
 bool			start_dinner(t_table *table, int ac, char **av);
 void			set_args(t_table *infos, int ac, char **av);
-int				check_params(t_table *infos, int ac);
+int				check_args(t_table *infos, int ac);
 void			hungry_ph(t_philo *philo, int finish);
 __uint64_t		get_time(__uint64_t start_time);
 void			eating(t_philo *philo);
@@ -81,4 +81,5 @@ void			thinking(t_philo *philo);
 int				time_to_die(t_philo *philo);
 int				ft_atoi(char *str);
 void			destroy_philos(t_table table, t_philo **philos, int i);
+
 #endif

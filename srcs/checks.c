@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/26 13:32:15 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:37:33 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/philo.h"
-
 
 void	destroy_philos(t_table table, t_philo **philos, int i)
 {
 	while (i < table.num_philos)
 	{
 		pthread_mutex_destroy(&table.forks[i]);
+		
 		free(philos[i]);
 		i++;
 	}
+	
 }
+
 void	set_args(t_table *infos, int ac, char **av)
 {
 	if (ac == 5 || ac == 6)
@@ -39,7 +40,7 @@ void	set_args(t_table *infos, int ac, char **av)
 	}
 }
 
-int	check_params(t_table *infos, int ac)
+int	check_args(t_table *infos, int ac)
 {
 	if (ac < 5 || ac > 6)
 		return (printf("Try: ./philo <number_of_philos>"\
@@ -52,13 +53,11 @@ int	check_params(t_table *infos, int ac)
 	if (infos->time_to_eat < 1)
 		return (printf("Erro: time to eat\n"));
 	if (infos->time_to_sleep < 1)
-		return (printf("Erro: time to\n"));
+		return (printf("Erro: time to sleep\n"));
 	if (ac == 6 && (infos->num_ph_eat < 1))
 		return (printf("Erro: meals to eat\n"));
 	return (0);
 }
-
-
 
 int	time_to_die(t_philo *philo)
 {
@@ -70,7 +69,7 @@ int	time_to_die(t_philo *philo)
 		pthread_mutex_lock(&philo->table->msg);
 		printf("%ld %d has taken a fork\n", philo->t_last_meal, philo->id + 1);
 		pthread_mutex_unlock(&philo->table->msg);
-		printf("%llu %d died\n", get_time(
+		printf("%d %d died\n", (int)get_time((__uint64_t)
 				philo->table->start_time), philo->id + 1);
 		pthread_mutex_lock(&philo->table->finish_eating);
 		philo->table->dinner_done = 1;

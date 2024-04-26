@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:56:19 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/26 13:32:41 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/26 19:01:28 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	start_dinner(t_table *table, int ac, char **av)
 {
 	set_args(table, ac, av);
-	if (!check_params(table, ac))
+	if (!check_args(table, ac))
 		return (false);
 	return (true);
 }
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 {
 	t_table		table;
 	t_philo		**philos;
-	int	i;
+	int			i;
 
 	i = 0;
 	table = (t_table){0};

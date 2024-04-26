@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agpereir <agpereir@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:32:35 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/26 13:01:17 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/26 19:20:04 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_meals(t_table *table)
 	}
 	if (count == table->num_philos)
 	{
-		printf(CYAN "\n%d philosophers ate %d times\n", 
+		printf(CYAN "\n%d philosophers ate %d times\n",
 			table->num_philos, table->num_ph_eat);
 		pthread_mutex_lock(&table->finish_eating);
 		table->dinner_done = 1;
@@ -80,7 +80,6 @@ void	*monitoring(void *arg)
 		return (NULL);
 	while (dead == 0)
 	{
-		usleep(1000);
 		if (table->num_ph_eat != -1)
 		{
 			if (check_meals(table))
