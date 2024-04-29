@@ -6,7 +6,7 @@
 /*   By: agpereir <agpereir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by agpereir          #+#    #+#             */
-/*   Updated: 2024/04/26 17:37:33 by agpereir         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:08:19 by agpereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ void	destroy_philos(t_table table, t_philo **philos, int i)
 	while (i < table.num_philos)
 	{
 		pthread_mutex_destroy(&table.forks[i]);
-		
 		free(philos[i]);
 		i++;
 	}
-	
 }
 
 void	set_args(t_table *infos, int ac, char **av)
